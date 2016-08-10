@@ -56,7 +56,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     let formatter = NSNumberFormatter()
                     formatter.minimumFractionDigits = 2
                     
-                    let title = "D: R$ \(formatter.stringFromNumber(dolar)!) | E: R$ \(formatter.stringFromNumber(euro)!)"
+                    formatter.numberStyle = .CurrencyStyle
+                    formatter.locale = NSLocale(localeIdentifier: "pt_BR")
+                    formatter.generatesDecimalNumbers = true
+                    formatter.currencySymbol = "R$ "
+                    
+                let title = "D: \(formatter.stringFromNumber(dolar)!) | E: \(formatter.stringFromNumber(euro)!)"
                     self.statusItem?.title = title
                 } catch let error as NSError {
                     print(error)
